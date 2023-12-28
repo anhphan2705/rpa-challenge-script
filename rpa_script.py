@@ -1,18 +1,21 @@
-import rpa as r
+import rpa as r; r.setup()
 import pandas as pd
 
-data_frame = pd.read_excel("./Robotic-Process-Automation/rpa-challenge-script/data/challenge.xlsx")
+data_frame = pd.read_excel(
+    ".\\Robotic-Process-Automation\\rpa-challenge-script\\data\\challenge.xlsx"
+)
 
 # Start the tagUI process
 r.init(turbo_mode=True, chrome_browser=True)
 
 # Open the website
-r.url('https://rpachallenge.com/')
+r.url("https://rpachallenge.com/")
 r.wait()
 
 # Click on Start button
 r.click('//button[text()="Start"]')
 
+# Enter the data
 for index, row in data_frame.iterrows():
     r.type('//input[@ng-reflect-name="labelFirstName"]', row["First Name"])
     r.type('//input[@ng-reflect-name="labelLastName"]', row["Last Name "])
