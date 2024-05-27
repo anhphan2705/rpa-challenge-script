@@ -1,8 +1,8 @@
-import rpa as r; r.setup()
+import rpa as r
 import pandas as pd
 
 data_frame = pd.read_excel(
-    ".\\Robotic-Process-Automation\\rpa-challenge-script\\data\\challenge.xlsx"
+    "./rpa-challenge-script/data/challenge.xlsx"
 )
 
 # Start the tagUI process
