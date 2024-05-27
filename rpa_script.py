@@ -1,19 +1,19 @@
 import rpa as r
 import pandas as pd
 
-data_frame = pd.read_excel(
-    "./rpa-challenge-script/data/challenge.xlsx"
-)
+data_frame = pd.read_excel("./rpa-challenge-script/data/challenge.xlsx")
 
 # Start the tagUI process
-r.init(turbo_mode=True, chrome_browser=True)
+r.init(turbo_mode=True, headless_mode=True)
 
 # Open the website
 r.url("https://rpachallenge.com/")
 r.wait()
+print("connected")
 
 # Click on Start button
 r.click('//button[text()="Start"]')
+print("starting")
 
 # Enter the data
 for index, row in data_frame.iterrows():
@@ -24,10 +24,12 @@ for index, row in data_frame.iterrows():
     r.type('//input[@ng-reflect-name="labelAddress"]', row["Address"])
     r.type('//input[@ng-reflect-name="labelEmail"]', row["Email"])
     r.type('//input[@ng-reflect-name="labelPhone"]', str(row["Phone Number"]))
+    print("submitting")
     r.click('//input[@value="Submit"]')
 
 # Screenshot of Webpage
 r.snap("/html/body/app-root/div[2]", "result.png")
 
 # Stop the tagUI process
+# r.wait()
 r.close()
